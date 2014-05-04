@@ -9,25 +9,46 @@
 #import "MBProgressHUD.h"
 
 @interface MBProgressHUD (Custom)
-#pragma mark 百度相册定制
-+ (void)showOnCAView:(UIView *)view;
-+ (void)showOnCAView:(UIView *)view labelText:(NSString*)labelText;
 
-+ (void)showOnCAViewFinishTxt:(UIView *)view  labelText:(NSString*)labelText;
-+ (void)showOnCAViewSucceedImg:(UIView *)view  labelText:(NSString*)labelText;
-+ (void)showOnCAViewErrorImg:(UIView *)view  labelText:(NSString*)labelText;
+#pragma mark 进度展示
+/*
+ * 展示进度，默认使用MBProgressHUDModeIndeterminate及pending...文本
+ */
++ (void)showOnView:(UIView *)view;
+
+/*
+ * 展示进度，默认使用MBProgressHUDModeIndeterminate，指定labelText文本
+ */
++ (void)showOnView:(UIView *)view labelText:(NSString*)labelText;
+
+#pragma mark 结果展示
+/*
+ * 展示文本结果，1.5s后自动消失
+ */
++ (void)showOnViewFinishTxt:(UIView *)view  labelText:(NSString*)labelText;
+
+/*
+ * 展示成功icon及文本结果，1.5s后自动消失
+ */
++ (void)showOnViewSucceedImg:(UIView *)view  labelText:(NSString*)labelText;
+
+/*
+ * 展示失败icon及文本结果，1.5s后自动消失
+ */
++ (void)showOnViewErrorImg:(UIView *)view  labelText:(NSString*)labelText;
 
 #pragma mark normal
-+ (void)showOnView:(UIView *)view mode:(MBProgressHUDMode)mode customView:(UIView*)customView insets:(UIEdgeInsets)edgeInsets  labelText:(NSString*)labelText hideDelay:(NSTimeInterval)hideDelay;
+/*
+ *
+ *MBProgressHUD默认覆盖view，edgeInsets为MBProgressHUD在view上的偏移量
+ */
++ (void)showOnView:(UIView *)view
+              mode:(MBProgressHUDMode)mode
+        customView:(UIView*)customView
+            insets:(UIEdgeInsets)edgeInsets
+         labelText:(NSString*)labelText
+         hideDelay:(NSTimeInterval)hideDelay;
 
 + (void)dismissForView:(UIView *)view;
 
-//+ (void)showOnView:(UIView *)view;
-//+ (void)showOnView:(UIView *)view txt:(NSString*)text;
-//+ (void)showOnView:(UIView *)view succeedOrErrorImg:(BOOL)succeedOrErrorImg txt:(NSString*)text;
-//
-//+ (void)dismissForView:(UIView *)view;
-//+ (void)dismissForView:(UIView *)view succeedOrErrorImg:(BOOL)succeedOrErrorImg txt:(NSString*)text;
-////隐藏提示框:自定义图片/文本/动画/延迟时间
-//+ (void)dismissForView:(UIView *)view txt:(NSString*)text  customView:(UIImageView*)imgView animated:(BOOL)animated afterDelay:(NSTimeInterval)seconds;
 @end

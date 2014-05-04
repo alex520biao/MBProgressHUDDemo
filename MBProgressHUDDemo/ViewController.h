@@ -10,4 +10,11 @@
 
 @interface ViewController : UIViewController
 
+
+
+#pragma mark-控件事件处理
+-(IBAction)finishTxtBtn:(id)sender;
+-(IBAction)succeedTxtBtn:(id)sender;
+-(IBAction)errorTxtBtn:(id)sender;
+
 @end
