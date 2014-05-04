@@ -478,6 +478,13 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	CGSize labelSize = [label.text sizeWithFont:label.font
                               constrainedToSize:CGSizeMake(maxWidth, 99999)
                                   lineBreakMode:label.lineBreakMode];
+    if (label.text.length==0) {
+        labelSize=CGSizeZero;
+    }
+    //labelSize最小值为{64,20}
+    CGSize labelMinSize=CGSizeMake(64, 20);
+    labelSize.width = MAX(labelSize.width, labelMinSize.width);
+    labelSize.height = MAX(labelSize.height, labelMinSize.height);
 	labelSize.width = MIN(labelSize.width, maxWidth);
 	totalSize.width = MAX(totalSize.width, labelSize.width);
 	totalSize.height += labelSize.height;
