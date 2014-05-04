@@ -16,7 +16,7 @@
                          mode:MBProgressHUDModeIndeterminate
                    customView:nil
                        insets:edgeInsets
-                    labelText:NSLocalizedString(@"pending...", nil)
+                    labelText:NSLocalizedString(@"加载中...", nil)
                     hideDelay:0];
 }
 
@@ -34,7 +34,8 @@
 #pragma mark 结果展示
 + (void)showOnViewFinishTxt:(UIView *)view  labelText:(NSString*)labelText{
     UIEdgeInsets edgeInsets=UIEdgeInsetsMake(0, 0, 0, 0);
-    UIImageView *customView=[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]] autorelease];
+    UIImageView *customView=[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_no_success_prompt_box_exclamation_mark@2x"]] autorelease];
+    customView.frame=CGRectMake(0, 0, 37, 37);
     [MBProgressHUD showOnView:view
                          mode:MBProgressHUDModeText
                    customView:customView
@@ -45,7 +46,8 @@
 
 + (void)showOnViewSucceedImg:(UIView *)view  labelText:(NSString*)labelText{
     UIEdgeInsets edgeInsets=UIEdgeInsetsMake(0, 0, 0, 0);
-    UIImageView *customView=[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]] autorelease];
+    UIImageView *customView=[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-success"]] autorelease];
+    customView.frame=CGRectMake(0, 0, 37, 37);
     [MBProgressHUD showOnView:view
                          mode:MBProgressHUDModeCustomView
                    customView:customView
@@ -57,6 +59,22 @@
 + (void)showOnViewErrorImg:(UIView *)view  labelText:(NSString*)labelText{
     UIEdgeInsets edgeInsets=UIEdgeInsetsMake(0, 0, 0, 0);
     UIImageView *customView=[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-error"]] autorelease];
+    customView.frame=CGRectMake(0, 0, 37, 37);
+    [MBProgressHUD showOnView:view
+                         mode:MBProgressHUDModeCustomView
+                   customView:customView
+                       insets:edgeInsets
+                    labelText:labelText
+                    hideDelay:1.5f];
+}
+
+/*
+ * 展示警告icon及文本结果，1.5s后自动消失
+ */
++ (void)showOnViewWarnImg:(UIView *)view  labelText:(NSString*)labelText{
+    UIEdgeInsets edgeInsets=UIEdgeInsetsMake(0, 0, 0, 0);
+    UIImageView *customView=[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_no_success_prompt_box_exclamation_mark"]] autorelease];
+    customView.frame=CGRectMake(0, 0, 37, 37);
     [MBProgressHUD showOnView:view
                          mode:MBProgressHUDModeCustomView
                    customView:customView
@@ -72,18 +90,22 @@
         HUD=[MBProgressHUD showHUDAddedTo:view animated:YES];
         HUD.removeFromSuperViewOnHide=YES;
         HUD.dimBackground = NO;//背景是否屏蔽用户操作
+        HUD.userInteractionEnabled=NO;
     }else{
-        //取消当前延迟调用及所有动画
-        [MBProgressHUD cancelPreviousPerformRequestsWithTarget:HUD];
-        [HUD.layer removeAllAnimations];
-        
-        //如果HUD已经存在则显示时不使用动画
-        [HUD show:NO];
     }
 
     //mode和labelText
     HUD.mode=mode;
     HUD.labelText=labelText;
+    HUD.margin=30;
+    
+    //取消当前延迟调用及所有动画
+    [MBProgressHUD cancelPreviousPerformRequestsWithTarget:HUD];
+    [HUD.layer removeAllAnimations];
+    
+    //如果HUD已经存在则显示时不使用动画
+    [HUD show:NO];
+
 
     //customView不为nil则优先使用customView
     if (mode==MBProgressHUDModeCustomView&&customView) {

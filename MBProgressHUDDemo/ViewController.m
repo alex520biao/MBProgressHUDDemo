@@ -43,10 +43,18 @@
     [errorTxtBtn addTarget:self action:@selector(errorTxtBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:errorTxtBtn];
     
+    UIButton *warnTxtBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [warnTxtBtn setTitle:@"warnTxtBtn" forState:UIControlStateNormal];
+    warnTxtBtn.titleLabel.textColor=[UIColor redColor];
+    warnTxtBtn.frame=CGRectMake(120+20,40,120,30);
+    warnTxtBtn.titleLabel.textAlignment=NSTextAlignmentLeft;
+    [warnTxtBtn addTarget:self action:@selector(warnTxtBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:warnTxtBtn];
+    
     UIButton *showBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [showBtn setTitle:@"showBtn" forState:UIControlStateNormal];
     showBtn.titleLabel.textColor=[UIColor redColor];
-    showBtn.frame=CGRectMake(120+20,40,120,30);
+    showBtn.frame=CGRectMake(10,70,120,30);
     showBtn.titleLabel.textAlignment=NSTextAlignmentLeft;
     [showBtn addTarget:self action:@selector(showBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:showBtn];
@@ -54,7 +62,7 @@
     UIButton *dismissBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [dismissBtn setTitle:@"dismissBtn" forState:UIControlStateNormal];
     dismissBtn.titleLabel.textColor=[UIColor redColor];
-    dismissBtn.frame=CGRectMake(10,70,120,30);
+    dismissBtn.frame=CGRectMake(120+20,70,120,30);
     dismissBtn.titleLabel.textAlignment=NSTextAlignmentLeft;
     [dismissBtn addTarget:self action:@selector(dismissBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:dismissBtn];
@@ -69,7 +77,7 @@
 
 #pragma mark-控件事件处理
 -(IBAction)finishTxtBtn:(id)sender{
-    [MBProgressHUD showOnViewFinishTxt:self.view labelText:@"操作完成"];
+    [MBProgressHUD showOnViewFinishTxt:self.view labelText:@"操作提示"];
 }
 
 -(IBAction)succeedTxtBtn:(id)sender{
@@ -78,6 +86,10 @@
 
 -(IBAction)errorTxtBtn:(id)sender{
     [MBProgressHUD showOnViewErrorImg:self.view labelText:@"操作失败"];
+}
+
+-(IBAction)warnTxtBtn:(id)sender{
+    [MBProgressHUD showOnViewWarnImg:self.view labelText:@"操作异常"];
 }
 
 -(IBAction)showBtn:(id)sender{

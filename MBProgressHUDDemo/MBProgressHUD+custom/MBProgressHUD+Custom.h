@@ -23,7 +23,7 @@
 
 #pragma mark 结果展示
 /*
- * 展示文本结果，1.5s后自动消失
+ * 展示纯文本结果，1.5s后自动消失
  */
 + (void)showOnViewFinishTxt:(UIView *)view  labelText:(NSString*)labelText;
 
@@ -36,6 +36,13 @@
  * 展示失败icon及文本结果，1.5s后自动消失
  */
 + (void)showOnViewErrorImg:(UIView *)view  labelText:(NSString*)labelText;
+
+/*
+ * 展示警告icon及文本结果，1.5s后自动消失
+ */
++ (void)showOnViewWarnImg:(UIView *)view  labelText:(NSString*)labelText;
+
+
 
 #pragma mark normal
 /*
