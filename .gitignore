@@ -14,3 +14,9 @@ build/*
 xcuserdata
 profile
 *.moved-aside
+
+.DS_Store
+
+MBProgressHUDDemo/.DS_Store
+
+MBProgressHUDDemo/MBProgressHUD+custom/.DS_Store
